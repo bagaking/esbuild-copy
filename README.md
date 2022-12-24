@@ -72,6 +72,7 @@ This package uses `fs.cpSync`, which is why Node.js 16.7 or newer is required.
 ```sh
 npm ci
 npm test
+npm run verify
 ```
 
 ## License

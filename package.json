@@ -12,7 +12,8 @@
     "node": ">=16.7.0"
   },
   "scripts": {
-    "test": "node test/smoke.mjs"
+    "test": "node test/smoke.mjs",
+    "verify": "npm test && node --check main.js && npm pack --dry-run"
   },
   "repository": {
     "type": "git",
