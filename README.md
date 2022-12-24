@@ -78,6 +78,10 @@ npm test
 npm run verify
 ```
 
+`npm run verify` runs the behavior smoke, checks `main.js` syntax, packs the
+published file set, installs that tarball into a temporary consumer project, and
+verifies the ESM default import shape.
+
 ## License
 
 [MIT](LICENSE)
