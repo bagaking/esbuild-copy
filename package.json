@@ -9,7 +9,7 @@
     "main.js"
   ],
   "engines": {
-    "node": ">=16.7.0"
+    "node": ">=18.0.0"
   },
   "scripts": {
     "test": "node test/smoke.mjs",

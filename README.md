@@ -10,7 +10,7 @@ npm install --save-dev esbuild-copy
 
 ## Requirements
 
-This package requires Node.js 16.7 or newer and is ESM-only. Use it from an
+This package requires Node.js 18 or newer and is ESM-only. Use it from an
 ESM file, such as `esbuild.config.mjs` or a project with `"type": "module"`.
 CommonJS `require("esbuild-copy")` is not supported.
 
@@ -52,7 +52,8 @@ or rebuild completes.
 }
 ```
 
-This package uses `fs.cpSync`, which is why Node.js 16.7 or newer is required.
+This package uses `fs.cpSync`, and its current esbuild test dependency requires
+Node.js 18 or newer.
 
 ## Behavior Notes / Boundaries
 
