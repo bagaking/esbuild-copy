@@ -1,0 +1,29 @@
+{
+  "name": "esbuild-copy",
+  "version": "1.0.0",
+  "description": "helps you to copy static files at the end of esbuild",
+  "main": "main.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bagaking/esbuild-copy.git"
+  },
+  "keywords": [
+    "esbuild",
+    "copy",
+    "static",
+    "build",
+    "paste"
+  ],
+  "author": "bagaking <kinghand@foxmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bagaking/esbuild-copy/issues"
+  },
+  "homepage": "https://github.com/bagaking/esbuild-copy#readme",
+  "devDependencies": {
+    "@types/node": "^18.11.17",
+    "esbuild": "^0.16.10"
+  }
+}
