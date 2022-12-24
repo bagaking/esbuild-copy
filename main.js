@@ -12,21 +12,25 @@ const defaultSetting = {
 }
 
 export default (option = defaultSetting) => {
+    const settings = {
+        ...defaultSetting,
+        ...Object.fromEntries(
+            Object.entries(option).filter(([, value]) => value !== undefined)
+        )
+    };
     let plugin = {
         name: 'copy',
         setup(build) {
             // needs node version >= 16
             build.onEnd(() => {
-                    let destDir = path.dirname(option.dest)
+                    let destDir = path.dirname(settings.dest)
                     if (!fs.existsSync(destDir)){
                         fs.mkdirSync(destDir, { recursive: true });
                     }
                     fs.cpSync(
-                        option.from,
-                        option.dest,
-                        {
-                            ...defaultSetting, ...option
-                        })
+                        settings.from,
+                        settings.dest,
+                        settings)
                 }
             )
         },
