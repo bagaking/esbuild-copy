@@ -76,3 +76,37 @@ assert.equal(typeof copy, "function");
         fs.rmSync(tempDir, { recursive: true, force: true });
     }
 }
+
+{
+    const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "esbuild-copy-"));
+    const sourceDir = path.join(tempDir, "source");
+    const destDir = path.join(tempDir, "dest");
+    const keptFile = path.join(sourceDir, "keep.txt");
+    const skippedFile = path.join(sourceDir, "skip.tmp");
+
+    try {
+        fs.mkdirSync(sourceDir);
+        fs.writeFileSync(keptFile, "kept");
+        fs.writeFileSync(skippedFile, "skipped");
+
+        const plugin = copy({
+            from: sourceDir,
+            dest: destDir,
+            filter: (sourcePath) => !sourcePath.endsWith(".tmp"),
+        });
+
+        let onEnd;
+        plugin.setup({
+            onEnd(callback) {
+                onEnd = callback;
+            },
+        });
+
+        onEnd();
+
+        assert.equal(fs.readFileSync(path.join(destDir, "keep.txt"), "utf8"), "kept");
+        assert.equal(fs.existsSync(path.join(destDir, "skip.tmp")), false);
+    } finally {
+        fs.rmSync(tempDir, { recursive: true, force: true });
+    }
+}
