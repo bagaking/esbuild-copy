@@ -8,6 +8,12 @@ Copy static files after an esbuild build finishes.
 npm install --save-dev esbuild-copy
 ```
 
+## Requirements
+
+This package requires Node.js 16.7 or newer and is ESM-only. Use it from an
+ESM file, such as `esbuild.config.mjs` or a project with `"type": "module"`.
+CommonJS `require("esbuild-copy")` is not supported.
+
 ## Usage
 
 ```js
@@ -46,4 +52,4 @@ or rebuild completes.
 }
 ```
 
-This package uses `fs.cpSync`, which requires Node.js 16 or newer.
+This package uses `fs.cpSync`, which is why Node.js 16.7 or newer is required.

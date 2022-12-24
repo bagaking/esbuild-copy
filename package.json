@@ -2,8 +2,17 @@
   "name": "esbuild-copy",
   "version": "1.0.0",
   "description": "helps you to copy static files at the end of esbuild",
+  "type": "module",
   "main": "main.js",
+  "exports": "./main.js",
+  "files": [
+    "main.js"
+  ],
+  "engines": {
+    "node": ">=16.7.0"
+  },
   "scripts": {
+    "test": "node test/smoke.mjs"
   },
   "repository": {
     "type": "git",
