@@ -21,7 +21,7 @@ export default (option = defaultSetting) => {
     let plugin = {
         name: 'copy',
         setup(build) {
-            // needs node version >= 16
+            // needs node version >= 18
             build.onEnd(() => {
                     let destDir = path.dirname(settings.dest)
                     if (!fs.existsSync(destDir)){
