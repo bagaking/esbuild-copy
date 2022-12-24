@@ -3,8 +3,9 @@ import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const repoRoot = path.resolve(import.meta.dirname, "..");
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "esbuild-copy-package-"));
 const packDir = path.join(tempDir, "pack");
 const consumerDir = path.join(tempDir, "consumer");
