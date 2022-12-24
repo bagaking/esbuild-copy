@@ -54,6 +54,19 @@ or rebuild completes.
 
 This package uses `fs.cpSync`, which is why Node.js 16.7 or newer is required.
 
+## Behavior Notes / Boundaries
+
+- Copying happens synchronously in esbuild's `onEnd` hook by calling
+  `fs.cpSync`.
+- Options are merged with the defaults above and then passed through to
+  `fs.cpSync`. Options set to `undefined` fall back to the default value.
+- The default copy is recursive, preserves timestamps, dereferences symlinks,
+  and overwrites existing files unless Node's `fs.cpSync` option behavior says
+  otherwise.
+- The plugin creates the destination parent directory when needed, but it does
+  not remove files from `dest` that no longer exist in `from`.
+- In watch or rebuild flows, the copy runs after every completed build.
+
 ## Local Validation
 
 ```sh
