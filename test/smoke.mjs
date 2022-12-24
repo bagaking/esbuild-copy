@@ -110,3 +110,37 @@ assert.equal(typeof copy, "function");
         fs.rmSync(tempDir, { recursive: true, force: true });
     }
 }
+
+{
+    const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "esbuild-copy-"));
+    const sourceDir = path.join(tempDir, "public");
+    const sourceFile = path.join(sourceDir, "asset.txt");
+    const entryFile = path.join(tempDir, "broken.js");
+    const outDir = path.join(tempDir, "dist");
+    const copiedFile = path.join(outDir, "public", "asset.txt");
+
+    try {
+        fs.mkdirSync(sourceDir);
+        fs.writeFileSync(sourceFile, "copied after failed build");
+        fs.writeFileSync(entryFile, "export const broken = ;\n");
+
+        await assert.rejects(
+            esbuild.build({
+                entryPoints: [entryFile],
+                bundle: true,
+                outfile: path.join(outDir, "bundle.js"),
+                logLevel: "silent",
+                plugins: [
+                    copy({
+                        from: sourceDir,
+                        dest: path.join(outDir, "public"),
+                    }),
+                ],
+            })
+        );
+
+        assert.equal(fs.readFileSync(copiedFile, "utf8"), "copied after failed build");
+    } finally {
+        fs.rmSync(tempDir, { recursive: true, force: true });
+    }
+}
