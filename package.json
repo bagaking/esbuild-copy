@@ -33,6 +33,6 @@
   "homepage": "https://github.com/bagaking/esbuild-copy#readme",
   "devDependencies": {
     "@types/node": "^18.11.17",
-    "esbuild": "^0.16.10"
+    "esbuild": "^0.25.12"
   }
 }
