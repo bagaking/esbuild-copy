@@ -53,3 +53,14 @@ or rebuild completes.
 ```
 
 This package uses `fs.cpSync`, which is why Node.js 16.7 or newer is required.
+
+## Local Validation
+
+```sh
+npm ci
+npm test
+```
+
+## License
+
+[MIT](LICENSE)
