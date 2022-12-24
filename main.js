@@ -22,7 +22,11 @@ export default (option = defaultSetting) => {
         name: 'copy',
         setup(build) {
             // needs node version >= 18
-            build.onEnd(() => {
+            build.onEnd((result) => {
+                    if (result?.errors?.length > 0) {
+                        return;
+                    }
+
                     let destDir = path.dirname(settings.dest)
                     if (!fs.existsSync(destDir)){
                         fs.mkdirSync(destDir, { recursive: true });

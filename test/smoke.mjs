@@ -121,7 +121,7 @@ assert.equal(typeof copy, "function");
 
     try {
         fs.mkdirSync(sourceDir);
-        fs.writeFileSync(sourceFile, "copied after failed build");
+        fs.writeFileSync(sourceFile, "should not copy after failed build");
         fs.writeFileSync(entryFile, "export const broken = ;\n");
 
         await assert.rejects(
@@ -139,7 +139,7 @@ assert.equal(typeof copy, "function");
             })
         );
 
-        assert.equal(fs.readFileSync(copiedFile, "utf8"), "copied after failed build");
+        assert.equal(fs.existsSync(copiedFile), false);
     } finally {
         fs.rmSync(tempDir, { recursive: true, force: true });
     }
